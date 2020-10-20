@@ -1,0 +1,15 @@
+# Hamiltonian Neural Networks | 2019
+# Sam Greydanus, Misko Dzamba, Jason Yosinski
+
+.DS_Store
+*.egg-info
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+.pytest_cache
+*.tar
+*.zip
+*.pkl
+__pycache__
+experiment-*/results*
+experiment-ch/data/*.png
+
