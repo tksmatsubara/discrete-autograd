@@ -37,8 +37,8 @@ def get_args():
     parser.add_argument('--seed', default=0, type=int, help='random seed')
     parser.add_argument('--save_dir', default=THIS_DIR, type=str, help='where to save the trained model')
     # model
-    parser.add_argument('--model', default='dgnet', type=str, help='used model.')
-    parser.add_argument('--solver', default='implicit', type=str, help='used solver.')
+    parser.add_argument('--model', default='hnn', type=str, help='used model.')
+    parser.add_argument('--solver', default='dg', type=str, help='used solver.')
     parser.add_argument('--friction', default=False, action="store_true", help='use friction parameter')
     parser.set_defaults(feature=True)
     return parser.parse_args()

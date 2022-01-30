@@ -4,7 +4,7 @@ from .ode import DGNet
 
 class DGNetPDE1d(DGNet):
 
-    def __init__(self, input_dim=1, hidden_dim=200, nonlinearity='tanh', name='', dx=1., model='dgnet', solver='implicit', alpha=2):
+    def __init__(self, input_dim=1, hidden_dim=200, nonlinearity='tanh', name='', dx=1., model='hnn', solver='dg', alpha=2):
         super(DGNetPDE1d, self).__init__(input_dim, hidden_dim, nonlinearity, model=model, solver=solver)
         output_dim = input_dim if self.model == 'node' else 1
         Act = get_decorated_module_by_name(nonlinearity)
@@ -14,10 +14,14 @@ class DGNetPDE1d(DGNet):
             Act(),
             Conv1d(hidden_dim, hidden_dim, kernel_size=1),
             Act(),
-            Conv1d(hidden_dim, output_dim, kernel_size=1, bias=None),
         ]
-        if model != 'node':
+        if model == 'node':
             sequence += [
+                Conv1d(hidden_dim, output_dim, kernel_size=1),
+            ]
+        else:
+            sequence += [
+                Conv1d(hidden_dim, output_dim, kernel_size=1, bias=None),
                 GlobalSummation1d(),
             ]
         self.net = Sequential(*sequence)

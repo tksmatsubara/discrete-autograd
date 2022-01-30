@@ -77,7 +77,7 @@ SOLVER_LIST_ADDITIONAL_IMPLICIT = [
 
 class DGNet(torch.nn.Module):
 
-    def __init__(self, input_dim, hidden_dim, nonlinearity='tanh', friction=False, model='dgnet', solver='implicit'):
+    def __init__(self, input_dim, hidden_dim, nonlinearity='tanh', friction=False, model='hnn', solver='dg'):
         super(DGNet, self).__init__()
         self.model = model
         if ',' in solver:
